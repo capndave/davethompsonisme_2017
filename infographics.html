@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>MyPage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!--set the viewport-->
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,400,700" rel="stylesheet">
+    <style>
+    :root {
+        --background-color-dark: #2A2B21;
+        --background-color-mid: #5E5D57;
+        --accent-color-teal: #2FCCB0;
+        --accent-color-pink: #FF9984;
+        --accent-color-cream: #FFFFED;
+    }
+    html, body {
+      background-color: var(--accent-color-cream);
+      height: 100%;
+      font-family: "Lato", sans-serif;
+      font-size: 16px;
+      color: var(--background-color-dark);
+    }
+
+    .center {
+      justify-content: center;
+      height: 100%
+    }
+
+    .content {
+      max-width: 1200px;
+      margin: auto;
+      text-align: left;
+    }
+
+    .header {
+      display: block;
+      overflow: auto;
+    }
+
+    .align-right {
+      float: right;
+      text-align: right;
+      display: block;
+    }
+    .nav-box {
+      display: inline-block;
+      text-align: center;
+    }
+
+    h6 {
+      margin: auto auto 2px auto;    
+    }
+
+    h1 {
+      display: inline-block;
+      vertical-align: middle;    
+    }
+
+    h3 {
+      display: block;
+      margin: 1rem auto 1rem auto;
+    }
+
+    a {
+        color: black;
+    }  
+
+    img{
+        margin-bottom: -5px;
+    }    
+
+    #pdf-container {
+      height: 90vh;
+    }
+
+    object {
+      height: 100%;
+    }
+        
+    #infographics-img {
+        width: 100%;
+    }    
+
+
+
+    </style>
+</head>
+<body>
+  <div class="center">
+    <div class="content">
+      <div class = "header">
+        <h1>Infographics</h1>
+        <div class="align-right nav-box"><a href="index.html">
+          <h6>Back to</h6>
+          <img src="img/small_me.png" height="50px" width="50px"></img>
+          <h6>davethompsonisme.com</h6></a>
+        </div>
+      </div>
+    <h3>From Forward Arkansas' <em>State of the State of Preschool</em></h3>
+    <div id="pdf-container"></div>
+    </div>
+  </div>
+  <script>
+    const width = window.innerWidth,
+    pdfContainer = document.getElementById("pdf-container")
+
+    if(width > 450){
+       pdfContainer.innerHTML =  '<object data="img/FORW 1702227 prek booklet.pdf" height = "100%" width="100%">Chrome mobile browser is not configured to view pdfs! To view, got to chrome://plugins. Make sure the built-in "Chrome PDF Viewer" is Enabled, which you can use to view PDFs in Chrome.</object>' 
+    } else { // do if cell phone
+        pdfContainer.innerHTML ="<img src='img/forward_page4.png' id='infographics-img'>"
+        pdfContainer.style.height = "20vh";
+    }
+  </script>
+      
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>davethompson is me - D3</title>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,400,700" rel="stylesheet">
+        <style>
+            :root {
+                --background-color-dark: #2A2B21;
+                --background-color-mid: #5E5D57;
+                --accent-color-teal: #2FCCB0;
+                --accent-color-pink: #FF9984;
+                --accent-color-cream: #FFFFED;
+            }
+            html, body {
+              background-color: var(--accent-color-cream);
+              height: 100%;
+              font-family: "Lato", sans-serif;
+              font-size: 16px;
+              color: var(--background-color-dark);
+            }
+            
+            .center {
+              justify-content: center;
+              height: 100%
+            }
+
+            .content {
+              max-width: 1200px;
+              margin: auto;
+              text-align: left;
+            }
+
+            .header {
+              display: block;
+              overflow: auto;
+            }
+
+            .align-right {
+              float: right;
+              text-align: right;
+              display: block;
+            }
+            .nav-box {
+              display: inline-block;
+              text-align: center;
+            }
+
+            h6 {
+              margin: auto auto 2px auto;    
+            }
+
+            h1 {
+              display: inline-block;
+              vertical-align: middle;    
+            }
+
+            h3 {
+              display: block;
+              margin: 1rem auto 1rem auto;
+            }
+
+            a {
+                color: black;
+            }  
+
+            img{
+                margin-bottom: -5px;
+            }    
+
+            #pdf-container {
+              height: 90vh;
+            }
+
+            object {
+              height: 100%;
+            }
+
+            #graph-title {
+              font-family: "Lato",sans-serif;
+              font-weight: bold;
+              font-size: 3rem;
+              margin: 10px;
+            }
+
+            .outer-center {
+              display: flex;
+              overflow: auto;
+              justify-content: center;
+            }
+
+            li {
+              display: inline;
+            }
+
+            rect:hover {
+              fill: var(--accent-color-pink);
+            }
+            
+            ul{
+              list-style: none;
+              margin: 0;
+              padding: 0;
+            }
+
+            ul li{
+              display: block;
+              position: relative;
+              float: left;
+              width: auto;
+              height: auto;
+            }
+
+            ul li input[type=radio]{
+              position: absolute;
+              visibility: hidden;
+            }
+
+            ul li label{
+              display: inline-block;
+              position: relative;
+              font-weight: 400;
+              font-size: 1.35em;
+              padding: 0 10px 0 60px;
+              margin: 10px auto;
+              height: 1.35em;
+              z-index: 9;
+              cursor: pointer;
+              -webkit-transition: all 0.25s linear;
+            }
+
+            ul li:hover label{
+              color: var(--accent-color-pink);
+            }
+
+            ul li .check{
+              display: block;
+              position: absolute;
+              border: 5px solid #444444;
+              border-radius: 100%;
+              height: 20px;
+              width: 20px;
+              top: 10px;
+              left: 10px;
+              z-index: 5;
+              transition: border .25s linear;
+              -webkit-transition: border .25s linear;
+            }
+
+            ul li:hover .check {
+              border: 5px solid #D98B8B;
+            }
+
+            ul li .check::before {
+              display: block;
+              position: absolute;
+              content: '';
+              border-radius: 100%;
+              height: 10px;
+              width: 10px;
+              top: 5px;
+              left: 5px;
+              margin: auto;
+              transition: background 0.25s linear;
+              -webkit-transition: background 0.25s linear;
+            }
+
+              input[type=radio]:checked ~ .check {
+                border: 5px solid var(--accent-color-pink);
+              }
+
+              input[type=radio]:checked ~ .check::before{
+                background: var(--accent-color-pink);
+              }
+
+              input[type=radio]:checked ~ label{
+                color: var(--accent-color-pink);
+              }
+
+            
+        </style>    
+	</head>
+
+	<body>
+    <div class="center">
+        <div class="content">
+          <div class = "header">
+            <h1>D3.js</h1>
+            <div class="align-right nav-box"><a href="index.html">
+              <h6>Back to</h6>
+              <img src="img/small_me.png" height="50px" width="50px"></img>
+              <h6>davethompsonisme.com</h6></a>
+            </div>
+          </div>
+        <div class = "outer-center" id="title">
+		<h1 id="graph-title">Skill Growth</h1>
+	   </div>
+		<div class = "outer-center" id = "buttons">
+			<ul>
+				<li>
+			    <input type="radio" id="button-2015" name="selector" value="2015" checked="checked">
+			    <label for="button-2015">2015</label>
+			    <div class="check"><div class="inside"></div></div>
+			  </li>
+			  <li>
+			    <input type="radio" id="button-2016" value="2016" name="selector">
+			    <label for="button-2016">2016</label>
+			    <div class="check"><div class="inside"></div></div>
+			  </li>
+				<li>
+					<input type="radio" id="button-2017" value="2017" name="selector">
+					<label for="button-2017">2017</label>
+					<div class="check"><div class="inside"></div></div>
+				</li>
+			</ul>
+		</div>
+
+		<div class = "outer-center" id="graph"></div>
+    </div>
+</div>
+		<script>
+        ////////////////////////////////////////////////////////////////////////////////
+//Radio Buttons
+////////////////////////////////////////////////////////////////////////////////
+
+let yearVar = 2015;
+
+window.onload = function() {
+  let radioButtons = document.getElementsByName("selector")
+  for (var i = 0; i < radioButtons.length; i++)
+    radioButtons[i].onclick=RadioClicked;
+}
+
+function RadioClicked() {
+  yearVar = this.value; //updates the yearVar to appropriate year
+  update();
+}
+
+////////////////////////////////////////////////////////////////////////////////
+//D3
+////////////////////////////////////////////////////////////////////////////////
+
+////Define functions
+const FilterData = function(input) {
+  return input.filter(function(el){ return +el.Date === +yearVar; });
+}
+
+const TransposeData = function(data) {
+  var resultingData = []
+  let datum = Object.values(data[0]);  //destructures a nested array
+  datum.shift()
+  let categories = Object.keys(data[0])
+  categories.shift();
+  for(i=0; i < datum.length; i++) {
+    var holder = categories[i]
+    var object = {category: categories[i] , number: +datum[i]}
+    resultingData.push(object) //pushes what we want into resultingData array
+  }
+  return resultingData;
+}
+
+////Render graphs
+
+//Width and height
+let margin = {top: 20, right: 20, bottom: 30, left: 40},
+  width = 1000 - margin.left - margin.right,
+  height = 500 - margin.top - margin.bottom,
+  barWidth;
+
+// set the ranges
+var xScale = d3.scaleBand()
+        .range([0, width])
+        .padding(0.1);
+var yScale = d3.scaleLinear()
+        .domain([0,10])
+        .range([height, 0])
+        .nice();
+
+// append the svg object to the graph div
+// append a 'group' element to 'svg'
+// moves the 'group' element to the top left margin
+var svg = d3.select("#graph").append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .attr("preserveAspectRatio", "xMinYMin meet")
+  .attr("viewBox", "0 0 " + (width + margin.left + margin.right) + " " +  (height + margin.top + margin.bottom))
+//class to make it responsive
+.classed("svg-content-responsive", true)
+.append("g")
+  .attr("transform",
+        "translate(" + margin.left + "," + margin.top + ")")
+  .attr("fill", "#225459");
+
+// INITAL
+function initial() {
+
+  d3.csv("mydata.csv", function(error, data) {
+  if (error) throw error;
+
+  console.log(data)
+
+  //manipulate data to get version we want, called resultingData
+  let resultingData = TransposeData(FilterData(data));
+
+  // Scale the range of the data in the domains
+  xScale.domain(resultingData.map(function(d) { return d.category; }));
+  yScale.domain([0,10]) //scales yAxis from 1-10 regardless
+
+  // append the rectangles for the bar chart
+  var bars = svg.selectAll(".bar")
+      .data(resultingData)
+
+  bars.enter()
+      .append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return xScale(d.category); })
+      .attr("width", xScale.bandwidth())
+      .attr("y", function(d) { return yScale(d.number); })
+      .attr("height", function(d) { return height - yScale(d.number); });
+
+  // add the x Axis
+  svg.append("g")
+      .style("font", "14px Lato")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(xScale));
+
+  // add text labels
+  console.log(resultingData)
+
+  //not working, why?
+  svg.selectAll("text")
+      .data(resultingData)
+      .enter()
+      .append("text")
+      .text(function(d) {
+        return d.number;
+      })
+      .attr("x", function(d, i) {
+        return i * (width / 5);
+      })
+      .attr("y", function(d) {
+        return height - (d.number * 4);
+      })
+      .attr("font", "14px Lato")
+      .attr("fill", "#2A2B21");
+  });
+}
+
+
+//UPDATE
+function update() {
+
+  d3.csv("mydata.csv", function(error, data) {
+  if (error) throw error;
+
+  //manipulate data to get version we want, called resultingData
+  let resultingData = TransposeData(FilterData(data));
+
+  // Scale the range of the data in the domains
+  xScale.domain(resultingData.map(function(d) { return d.category; }));
+  yScale.domain([0,10]) //scales yAxis from 1-10 regardless
+
+  // append the rectangles for the bar chart
+  var bars = svg.selectAll(".bar")
+      .data(resultingData)
+
+    bars.transition()
+          .duration(1000)
+          .attr("height", function(d) { return height - yScale(d.number); })
+          .attr("y", function(d) { return yScale(d.number); })
+  });
+}
+
+// add the y Axis
+svg.append("g")
+    .style("font", "14px Lato")
+    .call(d3.axisLeft(yScale).ticks(10));
+
+initial();
+        
+        </script>
+
+	</body>
+</html>

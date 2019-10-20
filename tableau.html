@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>MyPage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!--set the viewport-->
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,400,700" rel="stylesheet">
+    <style>
+        
+      :root {
+            --background-color-dark: #2A2B21;
+            --background-color-mid: #5E5D57;
+            --accent-color-teal: #2FCCB0;
+            --accent-color-pink: #FF9984;
+            --accent-color-cream: #FFFFED;
+        }    
+        
+      document, html {
+        background-color: var(--accent-color-cream);
+        color: var(--background-color-dark);  
+      }
+
+      .center {
+        display: flex;
+        justify-content: center;
+      }
+        
+    .content {
+      max-width: 1200px;
+      margin: auto;
+      text-align: left;
+    }
+
+    .header {
+      display: block;
+      overflow: auto;
+    }
+
+    .align-right {
+      float: right;
+      text-align: right;
+      display: block;
+    }
+    .nav-box {
+      display: inline-block;
+      text-align: center;
+    }
+
+    h1 {
+      display: inline-block;
+      vertical-align: middle;    
+    }
+
+    h3 {
+      display: block;
+      margin: 1rem auto 1rem auto;
+    }
+    
+    h6 {
+      margin: 0 auto 2px auto;    
+    }
+
+    img {
+        margin-bottom: -5px;
+    }
+
+    a {
+        color: var(--background-color-dark);  
+    }    
+
+    #tableau-container {
+      margin-top: 1rem;    
+      height: 90vh;
+    }
+
+    object {
+      height: 100%;
+    }
+        
+    #infographics-img {
+        width: 100%;
+    }        
+
+    </style>
+</head>
+<body>
+    
+    <div class="center">
+    <div class="content">
+      <div class = "header">
+        <h1>Tableau</h1>
+        <div class="align-right nav-box"><a href="index.html">
+          <h6>Back to</h6>
+          <img src="img/small_me.png" height="50px" width="50px"></img>
+          <h6>davethompsonisme.com</h6></a>
+        </div>
+      </div>
+        <h3>From Westat <em>Tweet Mining and Analysis</em></h3>
+        <div id="tableau-container">
+          <div class="center tableau-page-background">
+            <div class='tableauPlaceholder' id='viz1508784188536' style='position: relative'>
+              <noscript><a href='http:&#47;&#47;www.davethompsonisme.com&#47;tableau'>
+                <img alt='Activity Level Comparison ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;tw&#47;tweetmining_torelease_v4&#47;ActivityLevelComparison&#47;1_rss.png' style='border: none'/>
+                </a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F'/>
+                <param name='embed_code_version' value='2' /> <param name='site_root' value='' />
+                <param name='name' value='tweetmining_torelease_v4&#47;ActivityLevelComparison' />
+                <param name='tabs' value='no' /><param name='toolbar' value='yes' />
+                <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;tw&#47;tweetmining_torelease_v4&#47;ActivityLevelComparison&#47;1.png' />
+                <param name='animate_transition' value='yes' />
+                <param name='display_static_image' value='yes' />
+                <param name='display_spinner' value='yes' />
+                <param name='display_overlay' value='yes' />
+                <param name='display_count' value='yes' />
+                </object>
+              </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+    <script type='text/javascript'>
+      var divElement = document.getElementById('viz1508784188536');
+      var vizElement = divElement.getElementsByTagName('object')[0];
+      vizElement.style.width='1000px';vizElement.style.height='860px';
+      var scriptElement = document.createElement('script');
+      scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; 
+        
+      const width = window.innerWidth,
+      tableauContainer = document.getElementById("tableau-container")
+
+    if(width < 1000){
+      console.log(tableauContainer)
+      tableauContainer.innerHTML = "<p>Content too large to display on this screen! For Tableau examples, visit <a href = 'https://public.tableau.com/profile/capndave#!/'>Tableau Public</a></p>"
+    } 
+    
+        vizElement.parentNode.insertBefore(scriptElement, vizElement);
+    </script>
+
+</body>
+</html>

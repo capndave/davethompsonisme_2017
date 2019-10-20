@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>MyPage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!--set the viewport-->
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,400,700" rel="stylesheet">
+    <script src="https://use.fontawesome.com/cc2cd018be.js"></script>
+    <style>
+    :root {
+        --background-color-dark: #2A2B21;
+        --background-color-mid: #5E5D57;
+        --accent-color-teal: #2FCCB0;
+        --accent-color-pink: #FF9984;
+        --accent-color-cream: #FFFFED;
+    }
+    html, body {
+      background-color: white;
+      height: 100%;
+      font-family: "Lato", sans-serif;
+      font-size: 16px;
+      color: var(--background-color-dark);
+    }
+
+    .center {
+      justify-content: center;
+      height: 100%
+    }
+
+    .content {
+      max-width: 1200px;
+      margin: auto;
+      text-align: left;
+    }
+
+    .header {
+      display: block;
+      overflow: auto;
+    }
+
+    .align-right {
+      float: right;
+      text-align: right;
+      display: block;
+    }
+    .nav-box {
+      display: inline-block;
+      text-align: center;
+    }
+
+    h6 {
+      margin: auto auto 2px auto;
+    }
+
+    h1 {
+      display: inline-block;
+      vertical-align: middle;    
+    }
+
+    h3 {
+      display: block;
+      margin: 1rem auto 1rem auto;
+    }
+
+    a {
+        color: black;
+    }    
+
+    #pdf-container {
+      margin-top: 1rem;    
+      height: 100vh;
+      width: 100%;  
+      text-align: center;    
+    }
+
+    object {
+      height: 100%;
+    }
+        
+    #infographics-img {
+        width: calc(100% + 24px);
+        margin-left: -12px;
+    }
+
+    #img-me {
+        margin-bottom: -5px;
+    }          
+
+    </style>
+</head>
+<body>
+  <div class="center">
+    <div class="content">
+      <div class = "header">
+        <h1>Resume</h1>
+        <div class="align-right nav-box"><a href="index.html">
+          <h6>Back to</h6>
+          <img src="img/small_me.png" height="50px" width="50px" id="img-me"></img>
+          <h6>davethompsonisme.com</h6></a>
+        </div>
+      </div>
+        <div id="pdf-container"></div>
+    </div>
+  </div>
+  <script>
+    const width = window.innerWidth,
+          pdfContainer = document.getElementById("pdf-container");
+
+    if(width > 450){ //to do if not a cell phone
+        pdfContainer.innerHTML = '<object data="img/resume.pdf" style= "width : 100%; height : 100%; display : block;">Chrome mobile browser is not configured to view pdfs! To view, got to chrome://plugins. Make sure the built-in "Chrome PDF Viewer" is Enabled, which you can use to view PDFs in Chrome.<object>'
+    } else { // do if width is large enough for pdf
+        pdfContainer.innerHTML ="<a href='/img/resume.pdf' download><i class='fa fa-download' aria-hidden='true'></i> Download PDF</a><img src='img/resume.png' id='infographics-img'>"
+    }    
+      
+  </script>
+
+</body>
+</html>

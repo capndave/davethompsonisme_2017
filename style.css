@@ -1,0 +1,409 @@
+:root {
+    --background-color-dark: #2A2B21;
+    --background-color-mid: #5E5D57;
+    --accent-color-teal: #2FCCB0;
+    --accent-color-pink: #FF9984;
+    --accent-color-cream: #FFFFED;
+}
+
+body {
+  background-color: var(--background-color-dark);
+  font-family: "Lato", "sans-serif";
+  font-weight: 100;
+  font-size: 16px;
+  color: var(--accent-color-pink);
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;    
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-content {
+  position: relative;
+  height: calc(100% - 2rem);
+  max-height: calc(100% - 2rem);
+  width: calc(100% - 2rem);
+  max-width: 1200px;
+}
+
+.align-right {
+  float: right;
+  text-align: right;
+  display: block;
+}
+
+.align-left {
+  float: left;
+  text-align: left;
+  display: block;
+}
+
+.buttons-animation {
+  display: inline-block;
+}
+
+.skillsList{
+  width:100%
+}
+
+#svg-container {
+  width: 100%;
+  min-width: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+}
+
+svg {
+  padding-bottom: 5px;
+}
+
+#img-container {
+  position: relative;
+  display: block;
+  height: 50%;
+  width: auto;
+  margin: 0 auto;
+  transform: translateY(-2.5rem);
+  opacity: 0;
+  overflow: hidden;    
+ }
+
+#skills-container {
+    width: 100%;
+    position: absolute;
+    bottom: 10%;
+    font-size: 1.6rem;
+    opacity: 0;
+}
+
+#my-img{
+  display: block;
+  max-width: 100%;
+  max-height: 100%;    
+}
+
+#iDo {
+    display: inline;
+    font-weight: 400;
+}
+
+.skillsList {
+  font-weight: 400;
+  opacity: 0;   
+  white-space: nowrap;    
+}
+
+div.skillsList {
+    margin-top: 16px;
+}
+
+#i-do-text {
+  margin-top: 16px;
+  width: auto;
+  display: inline;
+  opacity: 0;
+}
+
+#webDesignText{
+    margin-top: 0;
+    width: auto;
+    display:inline-block;
+    text-decoration: underline;    
+}
+
+#webDesignText:hover {
+    color: var(--accent-color-cream);
+    cursor: default;
+}
+
+#dataVizText{
+    width: auto;
+    display:inline-block;
+    text-decoration: underline;
+    clear: right;
+}
+
+#dataVizText:hover {
+    color: var(--accent-color-cream);
+    cursor: default;
+}
+
+#statisticsText span{
+    width: auto;
+    display:inline-block;
+    text-decoration: underline;    
+}
+
+#statisticsText span:hover {
+    color: var(--accent-color-cream);
+    cursor: default;
+}
+
+ #footer {
+    background-color: var(--accent-color-pink);
+    color: var(--background-color-dark);
+    font-weight: 700;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    margin: 0; 
+    font-size: 1.2rem;
+}
+
+#footer a{
+  color: var(--background-color-dark);
+}
+
+#footer span{
+  padding: 10px 1rem 1rem 1rem;
+}
+
+/* The Modal (background) */
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100vw; /* Full width */
+    height: 100vh; /* Full height */
+    overflow: hidden; /* Enable scroll if needed */
+    background-color: var(--background-color-dark);
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: var(--accent-color-cream);
+    margin: 1rem auto 1rem auto; /* 16px from the top and centered */
+    padding: 20px 20px 0 20px;
+    border: 1px solid #888;
+    width: calc(100% - 70px); /* Could be more or less, depending on screen size */
+    max-width: 1200px; /* Could be more or less, depending on screen size */
+    height: calc(100% - 55px);
+    border-radius: 10px;
+    font-weight: 400;
+    color: var(--background-color-dark);
+}
+
+.modal-content a {
+    font-size: 1.1rem;
+    color: var(--background-color-mid);
+}
+
+.modal-content a:hover {
+    color: var(--background-color-dark);
+    cursor: default;
+}
+
+.modal-content p {
+    line-height: 30px;
+}
+
+.modal-content ul {
+    list-style-type: none;
+    line-height: 30px;
+    padding-left: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.modal-content li {
+    margin-left: 0;
+}
+
+.modal-content h3 {
+    margin-bottom: .5rem;
+}
+
+/* The Close Button */
+.close {
+    color: var(--background-color-dark);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    display: inline;
+    margin-top: 5px;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: default;
+}
+
+.modal-header {
+    display: inline;
+}
+
+/* animations */
+
+path {
+  fill:none;
+}
+
+@keyframes draw {
+ to {
+ stroke-dashoffset:0;
+ }
+}
+
+@-webkit-keyframes fadeIn {
+   0% {opacity: 0;}
+   100% {opacity: 1;}
+}
+
+@keyframes fadeIn {
+   0% {opacity: 0;}
+   100% {opacity: 1;}
+}
+
+@-webkit-keyframes appear {
+   0% {
+     opacity: 0;
+   }
+   100% {
+     opacity: 1;
+   }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes colorFade {
+   0% {color: #ffffff;}
+   50% {color: var(--accent-color-cream);}
+   100% {
+     text-decoration: underline;
+     color: var(--accent-color-pink);}
+}
+@keyframes colorFade {
+   0% {color: #ffffff;}
+   50% {color: var(--accent-color-cream);}
+   100% {
+     text-decoration: underline;
+     color: var(--accent-color-pink);}
+}
+
+.animated {
+  animation: draw .2s linear forwards;
+  stroke: var(--accent-color-pink);
+  stroke-width: 4px;
+}
+
+.fadeIn {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.appear {
+  animation-timing-function: ease;
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s;
+  -webkit-animation-name: appear;
+  animation-name: appear;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.colorFade {
+  -webkit-animation-timing-function: cubic-bezier(0, 0.055, 0.675, 0.19); /* Safari 4.0 - 8.0 */
+  animation-timing-function: cubic-bezier(0, 0.03, 0.675, 0.19);
+  -webkit-animation-duration: 2.3s;
+  animation-duration: 2.4s;
+  -webkit-animation-name: colorFade;
+  animation-name: colorFade;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+/*------MEDIA SCREENS--------------*/
+
+@media screen and (min-width: 500px) and (orientation:landscape) {
+    .animated {
+        stroke-width: 1.5px;
+     }
+
+     #img-container {
+       position: absolute;
+       height: 70vh;
+       top: 20vh;
+       left: 0;
+       transform: translateY(0);
+     }
+
+     #skills-container {
+       position: absolute;
+       top: 20vh;
+       right: 0;
+       width: 45%;
+    }
+
+    #skills-container a:hover {
+        color: var(--accent-color-cream);
+        cursor: default;
+    }      
+
+    .skillsList {
+      font-size: 5vh;
+      display: block;
+    }
+
+    div.skillsList {
+      margin-top: 10vh;
+    }
+
+    #resumeLink a{
+        color: var(--accent-color-pink);
+    }  
+    #contactLink a{
+        color: var(--accent-color-pink);
+    }      
+    
+}
+
+
+@media screen and (min-width: 500px) and (orientation:portrait) { /*Ipads etc*/
+    #skills-container, #footer {
+        font-size: 2.5rem;
+    }
+    
+    .animated {
+        stroke-width: 2px;
+     }
+}
+
+
+@media screen and (min-width: 900px) and (orientation:portrait) { /*Ipads etc*/
+    #skills-container, #footer {
+        font-size: 3.1rem;
+    }
+    
+    .animated {
+        stroke-width: 2.5px;
+     }
+}
+
+   
